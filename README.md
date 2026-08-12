@@ -31,11 +31,15 @@ Built for day-to-day UI work: screens, buttons, inputs, lists, layout, navigatio
 
 ## 1. Start a project
 
+**Run it on a phone:** full steps in [`docs/run-on-phone.md`](docs/run-on-phone.md).
+
 ```bash
 npx create-expo-app@latest MyApp
 cd MyApp
 npx expo start
 ```
+
+Then install **Expo Go** on your iPhone or Android, scan the QR code. Same Wi‑Fi. That is how you run it on a real phone while you code.
 
 | Command | What it does |
 | --- | --- |
@@ -698,6 +702,7 @@ These are the extras that show up in almost every real app.
 | Bottom tabs | [`docs/tabs.md`](docs/tabs.md) |
 | Icons and custom fonts | [`docs/fonts-icons.md`](docs/fonts-icons.md) |
 | Phone, email, maps, dates, back button | [`docs/device.md`](docs/device.md) |
+| Run on a phone (Expo Go + EAS) | [`docs/run-on-phone.md`](docs/run-on-phone.md) |
 | Debug, Expo Go, EAS build | [`docs/debugging-eas.md`](docs/debugging-eas.md) |
 | Search, pull-to-refresh, infinite scroll | [`docs/search-lists.md`](docs/search-lists.md) |
 | Toast, share, haptics, clipboard | [`docs/feedback.md`](docs/feedback.md) |
@@ -771,6 +776,9 @@ Copy these into `src/components/`:
 | [`examples/theme.js`](examples/theme.js) | Colors, spacing, type |
 | [`examples/firebase.js`](examples/firebase.js) | Firebase Auth + Firestore + Storage init |
 | [`examples/AuthContext.js`](examples/AuthContext.js) | Keep the user signed in |
+| [`examples/auth.js`](examples/auth.js) | Sign in / sign up / error messages |
+| [`examples/SignInScreen.js`](examples/SignInScreen.js) | Sign in screen |
+| [`examples/SignUpScreen.js`](examples/SignUpScreen.js) | Sign up screen |
 | [`examples/EmptyState.js`](examples/EmptyState.js) | Empty list / no results |
 | [`examples/pickImage.js`](examples/pickImage.js) | Camera + photo library helpers |
 | [`examples/SearchBar.js`](examples/SearchBar.js) | Search input |

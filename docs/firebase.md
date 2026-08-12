@@ -130,6 +130,8 @@ export async function logOut() {
 }
 ```
 
+Ready-made screens: [`examples/SignInScreen.js`](../examples/SignInScreen.js) and [`examples/SignUpScreen.js`](../examples/SignUpScreen.js).
+
 On a screen:
 
 ```jsx
