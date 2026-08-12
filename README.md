@@ -2,9 +2,9 @@
 
 Copy-paste recipes for building mobile apps with **Expo + React Native**.
 
-Built for day-to-day UI work: screens, buttons, inputs, lists, layout, navigation, and storage.
+Built for day-to-day UI work: screens, buttons, inputs, lists, layout, navigation, storage, and Firebase.
 
-> Stack this matches: Expo SDK 54, React Native 0.81, React Navigation 6.
+> Stack this matches: Expo SDK 54, React Native 0.81, React Navigation 6, Firebase JS SDK.
 
 ## Contents
 
@@ -23,7 +23,8 @@ Built for day-to-day UI work: screens, buttons, inputs, lists, layout, navigatio
 13. [Storage](#13-storage)
 14. [Platform and safe area](#14-platform-and-safe-area)
 15. [Common gotchas](#15-common-gotchas)
-16. [Reusable examples](#16-reusable-examples)
+16. [Firebase](#16-firebase)
+17. [Reusable examples](#17-reusable-examples)
 
 ---
 
@@ -644,7 +645,48 @@ Platform.select({
 
 ---
 
-## 16. Reusable examples
+## 16. Firebase
+
+Full walkthrough: [`docs/firebase.md`](docs/firebase.md).
+
+```bash
+npx expo install firebase @react-native-async-storage/async-storage
+```
+
+1. Create a project in the [Firebase Console](https://console.firebase.google.com/).
+2. Add a **Web** app and copy the config keys.
+3. Enable **Email/Password** auth, plus Firestore / Storage if you need them.
+4. Put keys in `.env` as `EXPO_PUBLIC_FIREBASE_...` (see [`.env.example`](.env.example)).
+5. Copy [`examples/firebase.js`](examples/firebase.js) to `src/auth/firebase.js`.
+
+Use `initializeAuth` with AsyncStorage so the user stays signed in. Do not call `getAuth()` in Expo.
+
+```js
+const auth = initializeAuth(app, {
+  persistence:
+    Platform.OS === 'web'
+      ? browserLocalPersistence
+      : getReactNativePersistence(AsyncStorage),
+});
+```
+
+Sign up / in / out:
+
+```js
+await createUserWithEmailAndPassword(auth, email, password);
+await signInWithEmailAndPassword(auth, email, password);
+await signOut(auth);
+```
+
+Watch auth state with [`examples/AuthContext.js`](examples/AuthContext.js):
+
+```js
+onAuthStateChanged(auth, (user) => setUser(user));
+```
+
+---
+
+## 17. Reusable examples
 
 Copy these into `src/components/`:
 
@@ -655,6 +697,8 @@ Copy these into `src/components/`:
 | [`examples/Card.js`](examples/Card.js) | Tappable card |
 | [`examples/Screen.js`](examples/Screen.js) | Safe area screen wrapper |
 | [`examples/theme.js`](examples/theme.js) | Colors, spacing, type |
+| [`examples/firebase.js`](examples/firebase.js) | Firebase Auth + Firestore + Storage init |
+| [`examples/AuthContext.js`](examples/AuthContext.js) | Keep the user signed in |
 
 Quick mental model:
 
