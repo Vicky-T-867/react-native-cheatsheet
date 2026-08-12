@@ -699,6 +699,14 @@ These are the extras that show up in almost every real app.
 | Icons and custom fonts | [`docs/fonts-icons.md`](docs/fonts-icons.md) |
 | Phone, email, maps, dates, back button | [`docs/device.md`](docs/device.md) |
 | Debug, Expo Go, EAS build | [`docs/debugging-eas.md`](docs/debugging-eas.md) |
+| Search, pull-to-refresh, infinite scroll | [`docs/search-lists.md`](docs/search-lists.md) |
+| Toast, share, haptics, clipboard | [`docs/feedback.md`](docs/feedback.md) |
+| Settings, switches, onboarding | [`docs/settings.md`](docs/settings.md) |
+| Dark mode | [`docs/dark-mode.md`](docs/dark-mode.md) |
+| Push notifications | [`docs/notifications.md`](docs/notifications.md) |
+| GPS / open maps | [`docs/location.md`](docs/location.md) |
+| Reset password, Google, Apple, SecureStore | [`docs/auth-extras.md`](docs/auth-extras.md) |
+| Offline banner, deep links, WebView | [`docs/offline.md`](docs/offline.md) |
 
 ### Keyboard (forms)
 
@@ -746,6 +754,8 @@ Linking.openURL('https://maps.google.com/?q=Wollongong');
 - Install **Expo Go**, scan the QR code, same Wi‑Fi
 - Store build later: `eas build --platform android --profile preview`
 
+Not in this cheatsheet (less common until you ship): in-app purchases, widgets, background location tracking, Bluetooth, NFC, live activities.
+
 ---
 
 ## 18. Reusable examples
@@ -763,6 +773,10 @@ Copy these into `src/components/`:
 | [`examples/AuthContext.js`](examples/AuthContext.js) | Keep the user signed in |
 | [`examples/EmptyState.js`](examples/EmptyState.js) | Empty list / no results |
 | [`examples/pickImage.js`](examples/pickImage.js) | Camera + photo library helpers |
+| [`examples/SearchBar.js`](examples/SearchBar.js) | Search input |
+| [`examples/useDebounce.js`](examples/useDebounce.js) | Delay search until typing stops |
+| [`examples/SettingsRow.js`](examples/SettingsRow.js) | Settings chevron / toggle row |
+| [`examples/Toast.js`](examples/Toast.js) | “Saved” popup |
 
 Quick mental model:
 
