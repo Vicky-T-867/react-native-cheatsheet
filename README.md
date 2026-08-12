@@ -2,7 +2,7 @@
 
 Copy-paste recipes for building mobile apps with **Expo + React Native**.
 
-Built for day-to-day UI work: screens, buttons, inputs, lists, layout, navigation, storage, and Firebase.
+Built for day-to-day UI work: screens, buttons, inputs, lists, layout, navigation, storage, Firebase, and device features.
 
 > Stack this matches: Expo SDK 54, React Native 0.81, React Navigation 6, Firebase JS SDK.
 
@@ -24,7 +24,8 @@ Built for day-to-day UI work: screens, buttons, inputs, lists, layout, navigatio
 14. [Platform and safe area](#14-platform-and-safe-area)
 15. [Common gotchas](#15-common-gotchas)
 16. [Firebase](#16-firebase)
-17. [Reusable examples](#17-reusable-examples)
+17. [More useful recipes](#17-more-useful-recipes)
+18. [Reusable examples](#18-reusable-examples)
 
 ---
 
@@ -686,7 +687,68 @@ onAuthStateChanged(auth, (user) => setUser(user));
 
 ---
 
-## 17. Reusable examples
+## 17. More useful recipes
+
+These are the extras that show up in almost every real app.
+
+| Topic | Doc |
+| --- | --- |
+| Keyboard covering inputs | [`docs/keyboard.md`](docs/keyboard.md) |
+| Photo library / camera / PDF | [`docs/image-picker.md`](docs/image-picker.md) |
+| Bottom tabs | [`docs/tabs.md`](docs/tabs.md) |
+| Icons and custom fonts | [`docs/fonts-icons.md`](docs/fonts-icons.md) |
+| Phone, email, maps, dates, back button | [`docs/device.md`](docs/device.md) |
+| Debug, Expo Go, EAS build | [`docs/debugging-eas.md`](docs/debugging-eas.md) |
+
+### Keyboard (forms)
+
+```jsx
+<KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+  <ScrollView keyboardShouldPersistTaps="handled">{/* inputs */}</ScrollView>
+</KeyboardAvoidingView>
+```
+
+### Pick a photo
+
+```bash
+npx expo install expo-image-picker
+```
+
+```js
+const result = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ['images'], quality: 0.7 });
+if (!result.canceled) setUri(result.assets[0].uri);
+```
+
+### Bottom tabs
+
+```bash
+npx expo install @react-navigation/bottom-tabs
+```
+
+```jsx
+<Tab.Navigator>
+  <Tab.Screen name="Home" component={HomeScreen} />
+  <Tab.Screen name="Profile" component={ProfileScreen} />
+</Tab.Navigator>
+```
+
+### Open phone / email / maps
+
+```js
+Linking.openURL('tel:+61400000000');
+Linking.openURL('mailto:hello@example.com');
+Linking.openURL('https://maps.google.com/?q=Wollongong');
+```
+
+### Debug and run on a phone
+
+- `r` reload, `j` debugger, `npx expo start --clear` if something is stuck
+- Install **Expo Go**, scan the QR code, same Wi‑Fi
+- Store build later: `eas build --platform android --profile preview`
+
+---
+
+## 18. Reusable examples
 
 Copy these into `src/components/`:
 
@@ -699,6 +761,8 @@ Copy these into `src/components/`:
 | [`examples/theme.js`](examples/theme.js) | Colors, spacing, type |
 | [`examples/firebase.js`](examples/firebase.js) | Firebase Auth + Firestore + Storage init |
 | [`examples/AuthContext.js`](examples/AuthContext.js) | Keep the user signed in |
+| [`examples/EmptyState.js`](examples/EmptyState.js) | Empty list / no results |
+| [`examples/pickImage.js`](examples/pickImage.js) | Camera + photo library helpers |
 
 Quick mental model:
 
